@@ -243,17 +243,28 @@ Use get20s to do the following:
 Example born in 1901 and died in 1959 - included -- born in 1889 and died in 1925 not included
 If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 
+//loop through to check years
+// add years to it's own array or object?
+// split years
+// is birth year >= 1900 && is death year <=2000
+// if so, return artists name
 function get20s(array){
-  let newArray = [];
+  let yearsArray = [];
+  let dates = [];
+  let people = [];
   for(let i = 0; i < array.length; i++){
-    newArray.push(array[i].years);
-    return newArray;
+    yearsArray.push(array[i].years);
+  }for(let j = 0; j < yearsArray.length; j++){
+    dates.push(yearsArray[j].split(' - '));
+  }for(let k = 0; k < dates.length; k++){
+  if(dates[k][0] >= 1900 && dates[k][1] <= 2000){
+      people.push(array[k].name)
+    }
   }  
-  let born = newArray.split(' - ')
-  return born;
+    
+return people;
 }
-console.log('Task 4:', get20s(artists));
-
+console.log('task 4:', get20s(artists));
 
 
 
