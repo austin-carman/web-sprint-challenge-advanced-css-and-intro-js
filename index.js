@@ -243,11 +243,7 @@ Use get20s to do the following:
 Example born in 1901 and died in 1959 - included -- born in 1889 and died in 1925 not included
 If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 
-//loop through to check years
-// add years to it's own array or object?
-// split years
-// is birth year >= 1900 && is death year <=2000
-// if so, return artists name
+
 function get20s(array){
   let yearsArray = [];
   let dates = [];
@@ -358,22 +354,43 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
-
-    /* Code here */
-
+function getHTML(data){
+  for(const key in artists) {
+    console.log('stretch1:', `
+    <div id="artist">
+    <div class="image">
+        <img src="${data[key].wikipedia}"/>
+    </div>
+    <div class = "name">
+       <a href="${data[key].wikipedia}"> ${data[key].name}</a>
+    </div>
+    <div class = "bio">${data[key].bio}.</div>
+    </div>
+    `);
   }
+}
+getHTML(artists);
 
+// "id": 19,
+// "name": "Albrecht Dürer",
+// "years": "1471 - 1528",
+// "genre": "Northern Renaissance",
+// "nationality": "German",
+// "bio": "Albrecht Dürer (; German: [ˈʔalbʁɛçt ˈdyːʁɐ]; 21 May 1471 – 6 April 1528) sometimes spelt in English as Durer or Duerer, without umlaut, was a painter, printmaker, and theorist of the German Renaissance. Born in Nuremberg, Dürer established his reputation and influence across Europe when he was still in his twenties due to his high-quality woodcut prints.",
+// "wikipedia": "http://en.wikipedia.org/wiki/Albrecht_Dürer",
+// "paintings": 328
 
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
-
-function randomize(/* Code here */){
-
-    /* Code here */
-
+// found fisher-yates array through google as the best way to randomize an array
+function randomize(array){
+  for(let i = array.length -1; i > 0; i--){ //loop through the array from the last index item backward to the first
+    let j = Math.floor(Math.random() * (i+1)); // assign j index a random number from 0 to i (array.length -1)
+    [array[i], array[j]] = [array[j], array [i]]; // swaps elements array[i] and array[j]
   }
-
+    return array;
+  }
+console.log('strech 2:', randomize(artists));
 
  /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
  Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
